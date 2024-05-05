@@ -2,15 +2,14 @@ package com.harshit.restaurant.Service;
 
 
 import com.harshit.restaurant.DTO.RestaurantDTO;
+import com.harshit.restaurant.ExceptionHandling.RestaurantException;
 import com.harshit.restaurant.Model.Restaurant;
 import com.harshit.restaurant.Repository.RestaurantRepository;
-import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
@@ -23,8 +22,8 @@ public class RestaurantService implements RestaurantServiceImpl {
         this.modelMapper=modelMapper;
     }
     @Override
-    public List<Restaurant> getAllRestaurant() {
-        return List.of();
+   public Restaurant getRestaurantById(int id)throws RestaurantException{
+        return restaurantRepository.findById(id);
     }
 
     @Override

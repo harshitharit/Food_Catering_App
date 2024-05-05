@@ -3,6 +3,7 @@ package com.harshit.restaurant.Controller;
 
 import com.harshit.restaurant.DTO.RestaurantDTO;
 import com.harshit.restaurant.ExceptionHandling.RestaurantException;
+import com.harshit.restaurant.Model.Restaurant;
 import com.harshit.restaurant.Service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,8 @@ public class RestaurantController {
       return new ResponseEntity<>((restaurantService.createRestaurant(restaurantDTO)),HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<String>getRestaurant(){
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/fetch/{id}")
+    public ResponseEntity<Restaurant>getRestaurantById(@PathVariable int id)throws RestaurantException{
+        return new ResponseEntity<>((restaurantService.getRestaurantById(id)),HttpStatus.OK);
     }
 }
